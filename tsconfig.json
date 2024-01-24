@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "esnext",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "removeComments": true,
+    "strict": true,
+    "rootDir": ".",
+    "baseUrl": ".",
+  },
+  "include": ["**/*"],
+  "exclude": ["**/node_modules", "**/build", "**/tests"],
+}

@@ -1,0 +1,31 @@
+{
+  "name": "pino-update-transport",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "tsup --dts --minify",
+    "remove-node-modules": "npx npkill"
+  },
+  "dependencies": {
+    "fast-json-parse": "^1.0.3",
+    "pino-abstract-transport": "^1.1.0",
+    "split2": "^4.2.0",
+    "through2": "^4.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.6",
+    "@types/split2": "^4.2.3",
+    "@types/through2": "^2.0.41",
+    "prettier": "^3.2.4",
+    "tsup": "^8.0.1",
+    "typescript": "^5.3.3"
+  },
+  "tsup": {
+    "entry": [
+      "src/index.ts"
+    ],
+    "splitting": false,
+    "sourcemap": true,
+    "clean": true
+  }
+}
