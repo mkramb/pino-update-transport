@@ -1,15 +1,49 @@
-import { pipeline } from 'stream';
+import build from 'pino-abstract-transport';
+import get from 'lodash.get';
 
-import { parseJsonStream, toLogEntryStream } from './streams';
-import type { ToLogEntry } from './types';
+type JSON = Record<string, any>;
+type Update = {
+  path: string;
+  contains: string[];
+  merge: JSON;
+};
 
-function createUpdateTransform(toLogEntry: ToLogEntry) {
-  return pipeline(
-    process.stdin,
-    parseJsonStream(),
-    toLogEntryStream(toLogEntry),
-    process.stdout,
-  );
+export type Options = {
+  updates: Update[];
+};
+
+function outputJSON(data: JSON) {
+  console.log(JSON.stringify(data));
 }
 
-export { createUpdateTransform };
+function updateLine(line: JSON, updates: Update[]) {
+  let updatedLine = line;
+
+  for (const { path, contains, merge } of updates) {
+    const value = get(updatedLine, path) as string;
+
+    if (value) {
+      const matches = contains.map((s) => value.indexOf(s) !== -1);
+      const matched = matches.filter(Boolean).length === contains.length;
+
+      if (matched) {
+        updatedLine = {
+          ...updatedLine,
+          ...(merge ?? {}),
+        };
+      }
+    }
+  }
+
+  return updatedLine;
+}
+
+export default async function (options: Options) {
+  const { updates } = options;
+
+  return build(async function (source) {
+    for await (let line of source) {
+      outputJSON(updateLine(line, updates));
+    }
+  }, {});
+}
