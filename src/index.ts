@@ -20,9 +20,9 @@ function updateLine(line: JSON, updates: Update[]) {
   let updatedLine = line;
 
   for (const { path, contains, merge } of updates) {
-    const value = get(updatedLine, path) as string;
+    const value = get(updatedLine, path, '') as string;
 
-    if (value) {
+    if (value && typeof value === 'string') {
       const matches = contains.map((s) => value.indexOf(s) !== -1);
       const matched = matches.filter(Boolean).length === contains.length;
 

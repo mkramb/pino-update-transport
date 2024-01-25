@@ -1,6 +1,6 @@
 {
   "name": "pino-update-transport",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Pino transport to allow JSON lines updates before final output.",
   "repository": {
     "type": "git",
