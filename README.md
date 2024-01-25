@@ -10,13 +10,13 @@ On first update:
 
 - will search for error.type field
 - check if value contains error and disconnect
-- and will set level attribute to 40
+- if matched, will set level attribute to 40
 
 On second update:
 
 - will search for msg field
 - check if value contains "error"
-- and will set isError attribute as true
+- if matched, will set isError attribute as true
 
 ```
 const pino = require('pino');
