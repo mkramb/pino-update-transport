@@ -1,9 +1,7 @@
-name: Master
+name: Publish
 
 on:
-  push:
-    branches:
-      - master
+  workflow_dispatch:
 
 env:
   CI: true
@@ -43,5 +41,13 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Build & Test
-        run: pnpm build && pnpm test
+      - name: Build
+        run: pnpm build
+
+      - name: Set publishing config
+        run: pnpm config set '//registry.npmjs.org/:_authToken' "${NODE_AUTH_TOKEN}"
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+
+      - name: Publish
+        run: pnpm publish --no-git-checks --access public

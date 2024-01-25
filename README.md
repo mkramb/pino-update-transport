@@ -1,6 +1,6 @@
 # pino-update-transport
 
-## Descriptions
+## Description
 
 Pino transport to allow JSON lines updates before final output.
 

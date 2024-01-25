@@ -43,7 +43,7 @@ export default async function (options: Options) {
 
   return build(async function (source) {
     for await (let line of source) {
-      outputJSON(updateLine(line, updates));
+      outputJSON(updates ? updateLine(line, updates) : line);
     }
   }, {});
 }
