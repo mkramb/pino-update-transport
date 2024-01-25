@@ -37,7 +37,7 @@ const updates = [
 const logger = pino({
   level: 'info',
   transport: {
-    target: __dirname + '/../dist/index',
+    target: 'pino-update-transport',
     options: {
       updates,
     },
