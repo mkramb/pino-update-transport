@@ -45,5 +45,5 @@ export default async function (options: Options) {
     for await (let line of source) {
       outputJSON(updates ? updateLine(line, updates) : line);
     }
-  }, {});
+  });
 }
