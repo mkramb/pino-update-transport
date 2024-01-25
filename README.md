@@ -2,7 +2,7 @@
 
 ## Descriptions
 
-Custom pino transport to allow JSON line updates / transformation.
+Pino transport to allow JSON lines updates before final output.
 
 ## Example
 
@@ -45,6 +45,12 @@ const logger = pino({
 });
 
 logger.error({ error: { type: 'error as disconnect' } }, 'error happened');
+```
+
+With output as:
+
+```
+{"level":40,"time":1706145844495,"pid":9319,"hostname":"Mitjas-MBP","error":{"type":"error as disconnect"},"msg":"error happened","isError":true}
 ```
 
 ## Development
