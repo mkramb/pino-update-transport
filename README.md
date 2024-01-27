@@ -6,13 +6,13 @@ Pino transport to allow JSON lines updates before final output.
 
 ## Example
 
-On first update:
+First update:
 
 - will search for error.type field
 - check if value contains error and disconnect
 - if matched, will set level attribute to 40
 
-On second update:
+Second update:
 
 - will search for msg field
 - check if value contains "error"
