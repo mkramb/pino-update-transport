@@ -47,7 +47,7 @@ const logger = pino({
 logger.error({ error: { type: 'error as disconnect' } }, 'error happened');
 ```
 
-With output as:
+Generate output as:
 
 ```
 {"level":40,"time":1706145844495,"pid":9319,"hostname":"Mitjas-MBP","error":{"type":"error as disconnect"},"msg":"error happened","isError":true}
